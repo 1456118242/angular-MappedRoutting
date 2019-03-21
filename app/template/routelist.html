@@ -1,0 +1,84 @@
+<div class="routelist-wrapper" ng-click="routeListClickHandler(route)">
+    <span class="fa fa-external-link-square fa-rotate-90 external"
+          ng-class="{true:'fa-rotate-270',false:'fa-rotate-90'}[route.isShowRouteList]"
+          ng-click="showOrHideRouteList(route)"
+          title="{{route.Route}}"
+            ></span>
+    <div class="routelist" ng-if="route.isShowRouteList">
+
+        <h5 ng-style="{color: '#'+route.Color}">{{::route.Route}}</h5>
+        <div class="list-btn clearfix">
+            <div class="btn-group ">
+                <button type="button" class="btn " ng-click="reSequenceHandler(route)">Re-Seq</button>
+                <button type="button" class="btn  dropdown-toggle" aria-expanded="{{route.isShowSeqOption}}" ng-click="route.isShowSeqOption = !route.isShowSeqOption;$event.stopPropagation();">
+                    <span class="caret"></span>
+
+                </button>
+                <ul class="dropdown-menu" >
+                    <li ng-click="reSequenceHandler(route, 0)"><a >{{rootjson.ReSeqSetting | formatRequenceOption : 0}} {{"Closest Stop First"|translate}}</a></li>
+                    <li ng-click="reSequenceHandler(route, 1)"><a >{{rootjson.ReSeqSetting | formatRequenceOption : 1}} {{"Farthest Stop First"|translate}}</a></li>
+                    <li ng-click="reSequenceHandler(route, 2)"><a >{{rootjson.ReSeqSetting | formatRequenceOption : 2}} {{"Service Windows"|translate}}</a></li>
+                    <li ng-click="reSequenceHandler(route, 3)"><a >{{rootjson.ReSeqSetting | formatRequenceOption : 3}} {{"Shortest Distance"|translate}}</a></li>
+                </ul>
+            </div>
+            <span ng-if="linearUnitOfMeasure == '1'" class="route-name">{{route.sumOfDistance}} miles - {{route.totalTravelTime}}</span>
+            <span ng-if="linearUnitOfMeasure == '2'" class="route-name">{{route.sumOfDistance}} km - {{route.totalTravelTime}}</span>
+            <div class="btn-group ">
+                <button type="button" class="btn " aria-expanded="{{route.isShowColumnOption}}" ng-click="route.isShowColumnOption = !route.isShowColumnOption;$event.stopPropagation();">{{"Column"|translate}}</button>
+                <button type="button" class="btn dropdown-toggle" aria-expanded="{{route.isShowColumnOption}}" ng-click="route.isShowColumnOption = !route.isShowColumnOption;$event.stopPropagation();">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" >
+                    <li ng-click="showColumn(route, 0)"><a >{{"Distance between stops"|translate}}</a></li>
+                    <li ng-click="showColumn(route, 1)"><a >{{"Distance from warehouse"|translate}}</a></li>
+                    <li ng-click="showColumn(route, 2)"><a >{{"City"|translate}}</a></li>
+                    <li ng-click="showColumn(route, 3)"><a >{{"Address"|translate}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="table-view">
+            <div class="table-head">
+                <span class="time">{{"Total"|translate}}</span>
+                <span class="title"></span>
+                <span style="text-align: right;" ng-if="field.isShow"  title = "{{::field.fieldName|translate}}" ng-repeat="field in route.showFieldNameList track by $index">{{route.Stops | calculateSumOfNumUnitByStops : field.fieldName}}</span>
+                <span style="text-align: right;" title="Weight">{{route.sumOfWeight}}</span>
+                <span></span>
+            </div>
+            <div class="table-start">
+                <div ng-switch on="route.isShowEditStartTime" style="display: inline;" class="time-edit-wrapper">
+                    <span style="cursor: pointer;" title="Change Start Time" ng-switch-when="false" ng-click="route.isShowEditStartTime=true;$event.stopPropagation();" class="time" onmouseover="this.style.backgroundColor='#8588DA'" onmouseout="this.style.backgroundColor='#FFF'">{{route.StartTime|timeFormat}}</span>
+                    <span ng-switch-when="true" class="time-input"><input type="text" ng-model="route.editStartTimeText" ng-click="$event.stopPropagation();"><i ng-click="saveStartTimeHandler($event,route)" class="fa fa-floppy-o"></i></span>
+                </div>
+                <span class="title"><i class="point"></i>{{"Start Point"|translate}} <i class="fa fa-pencil-square-o" alt="Change Start Point"  ng-click="changeMapPointHandler(route,1)"></i></span>
+
+                <span></span>
+                <span></span>
+            </div>
+            <div class="table-stops"
+                 dnd-list="route.Stops"
+                 dnd-drop="dropCallback(event, index, item)">
+                 <!--dnd-inserted="insertedCallback(index, event);"-->
+
+                <stop-list  ng-repeat="stop in route.Stops"
+                            ng-click="stopDivClickHandler( stop, route )"
+                            dnd-draggable="stop"
+                            dnd-moved="route.Stops.splice($index, 1);"
+                            dnd-effect-allowed="move"
+                            dnd-dragend="dragEndCallback($index, event);"
+                            stop="stop"
+                            route="route"
+                            rootjson="rootjson"
+                        ></stop-list>
+                <div ng-repeat="event in route.endRouteTypeActivityEventList" style="font-size: 10px;margin-left: 5px; background: linear-gradient(to right, Yellow 0%, #EBEBEC 60%);">
+                    {{event.startTimePlanned}}-{{event.endTimePlanned}} ({{event.objective|translate}})
+                </div>
+            </div>
+            <div class="table-end">
+                <span class="time">{{route.EndTime|timeFormat}}</span>
+                <span class="title"><i class="point"></i>{{"End Point"|translate}} <i class="fa fa-pencil-square-o" alt="Change End Point" ng-click="changeMapPointHandler(route,0)"></i></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div id="showloadsheetadddialog">
+    <table class="loadsheet-table" border=0>
+        <tr>
+            <td colspan="100%" style="text-align:center;font-size:20px;padding-top:0px">
+                <div class="title">Add Load Sheet</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="ews-title-route">Route</div>
+            </td>
+            <td>
+                <div class="ews-title-deliveryman">*Deliveryman</div>
+            </td>
+            <td>
+                <div class="ews-title-data">Date</div>
+            </td>
+        </tr>
+        <tr id="inputs">
+            <td  class="route">
+                <autocomplete style="width: 10%" attr-placeholder="Route"
+                              click-activation="true"
+                              attr-id="route"
+                              data="routes"
+                              on-type="typingRoutesHandler"
+                              ng-model="route"
+                              on-select="selectValue">
+
+                </autocomplete>
+            </td>
+            <td class="delivery">
+                <autocomplete style="width: 10%" attr-placeholder="Deliveryman"
+                              data="deliverymen"
+                              attr-id="deliveryman"
+                              click-activation="true"
+                              on-type="typingDeliverymenHandler"
+                              ng-model="deliveryman"
+                              >
+                </autocomplete>
+
+            </td>
+
+        </tr>
+        <tr id="btn-addloadsheet">
+            <td colspan="100%" style="text-align: end">
+                <button class="btn btn-save ng-binding" ng-click="LoadSheetAdd()">Add Record</button>
+                <button class="btn btn-cancel ng-binding" ng-click="dialogClose()">Cancel</button>
+            </td>
+        </tr>
+    </table>
+</div>

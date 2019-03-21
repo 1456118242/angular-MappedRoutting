@@ -1,0 +1,131 @@
+<div class="print-dialog">
+    <div class="btn-check text-right">
+        <button class="btn btn-save" ng-click="printHandler()">{{"Print"|translate}}</button>
+        <button class="btn btn-cancel" ng-click="closeThisDialog()">Cancel</button>
+    </div>
+    <p class="title">{{"Print"|translate}}</p>
+    <div id="printDiv">
+        <style>
+            .move-invoice-dialog .list-vertical .select-all,
+            .print-summary-dialog .list-vertical .select-all,
+            .print-select-dialog .list-vertical .select-all,
+            .print-dialog .list-vertical .select-all {
+                font-weight: bolder;
+                font-size: 16px;
+            }
+            .move-invoice-dialog .list-vertical .select-check,
+            .print-summary-dialog .list-vertical .select-check,
+            .print-select-dialog .list-vertical .select-check,
+            .print-dialog .list-vertical .select-check {
+                margin-left: 20px;
+            }
+            .move-invoice-dialog p.title,
+            .print-summary-dialog p.title,
+            .print-select-dialog p.title,
+            .print-dialog p.title {
+                font-size: 16px;
+                margin-top: -10px;
+                margin-bottom: 10px;
+                text-align: center;
+                font-weight: bold;
+            }
+            .move-invoice-dialog select,
+            .print-summary-dialog select,
+            .print-select-dialog select,
+            .print-dialog select {
+                width: 100%;
+                border-radius: 3px;
+            }
+            .move-invoice-dialog table,
+            .print-summary-dialog table,
+            .print-select-dialog table,
+            .print-dialog table {
+                border-collapse: collapse;
+                border: none;
+                margin: 10px 0;
+                font-size: 14px;
+                width: 100%;
+            }
+            .move-invoice-dialog table tbody tr:hover,
+            .print-summary-dialog table tbody tr:hover,
+            .print-select-dialog table tbody tr:hover,
+            .print-dialog table tbody tr:hover {
+                background-color: #fff;
+            }
+            .move-invoice-dialog table thead,
+            .print-summary-dialog table thead,
+            .print-select-dialog table thead,
+            .print-dialog table thead {
+                width: 100%;
+                background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+            }
+            .move-invoice-dialog table td,
+            .print-summary-dialog table td,
+            .print-select-dialog table td,
+            .print-dialog table td,
+            .move-invoice-dialog table th,
+            .print-summary-dialog table th,
+            .print-select-dialog table th,
+            .print-dialog table th {
+                text-align: center;
+                padding: 5px;
+                border: 1px solid #b0b1b1;
+            }
+        </style>
+        <div class="print-dialog">
+    <table cellpadding="0" cellspacing="0" width="100%" ng-if="printOptionList[0].isSelected">
+        <thead>
+        <th style="text-align: right;">{{"Load Sheet Date"|translate}}</th>
+        <th style="text-align: left;">{{"Route"|translate}}</th>
+        <th style="text-align: right;">{{"Load Sheet Num"|translate}}</th>
+        <th style="text-align: right;">{{"Time"|translate}}</th>
+        <th style="text-align: left;">{{"Deliveryman"|translate}}</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="element in listelements track by $index" ng-if="element.isSelected">
+            <td style="text-align: right">{{::element.route.LSDate|dateFormat}}</td>
+            <td style="text-align: left">{{::element.route.Route}}</td>
+            <td style="text-align: right">{{::element.route.LoadSheetID}}</td>
+            <td style="text-align: right">{{::nowTime|dateAndTimeFormat}}</td>
+            <td style="text-align: left">{{::element.route.Employee}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+	<div class="mapwrapper" id="print-map" ng-show="printOptionList[2].isSelected"  style="height:400px">map</div>
+    <img id="google-map-image" style="display: none;"/>
+    <div ng-if="printOptionList[0].isSelected">
+        <table cellpadding="0" cellspacing="0" width="100%" ng-repeat="element in listelements" ng-if="element.isSelected">
+            <thead>
+            <tr><th colspan="{{fieldLength}}">{{::element.route.Route}}</th></tr>
+            <tr> <th style="text-align: right">{{"Sequence"|translate}}</th>
+                <th style="text-align: left">{{"Stop Name"|translate}}</th>
+                <th style="text-align: right">$Vol</th>
+                <th style="text-align: right" ng-repeat="fieldObj in element.route.showFieldNameList  ">{{::fieldObj.fieldName|translate}}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="stop in element.route.Stops ">
+                <td style="text-align: right">{{stop.imageIndex}}</td>
+                <td style="text-align: left">{{stop.UserName}}</td>
+                <td style="text-align: right">${{stop.CustomerReceipt | number}}</td>
+                <td style="text-align: right" ng-repeat="numFieldObj in stop.numUnitFieldList">{{::numFieldObj.value|number}}</td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+            <td colspan="2">{{"Total"|translate}}</td>
+            <td style="text-align: right" >${{element.route | calculateSumOfFieldByStops:"receipt":false}}</td>
+            <td style="text-align: right" ng-repeat="fieldObj in element.route.showFieldNameList track by $index">{{element.route.Stops | calculateSumOfNumUnitByStops:fieldObj.fieldName}}</td>
+            </tfoot>
+        </table>
+    </div>
+
+    <div ng-if="printOptionList[1].isSelected" ng-repeat="obj in instructionObjList">
+        <div style="font-weight:bold;text-align: center;">{{obj.title}}</div>
+        <div ng-bind-html="obj.instructionsStr"></div>
+    </div>
+        </div>
+    </div>
+</div>

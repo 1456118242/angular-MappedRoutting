@@ -1,0 +1,56 @@
+<div class="toolsbar" style="width:110px">
+    <header>
+        <p style="width: 30px;height: 15px;margin-left:78px " ng-switch on="rootjson.isShowToolsBar" ng-click="rootjson.isShowToolsBar = !rootjson.isShowToolsBar" style="">
+            <img style="width:10px;padding-left: 20px;padding-bottom: 7px" ng-switch-when="true" src="./MappedRouting/app/images/expandmappanel.png" alt=""  />
+            <img style="width:10px;padding-left: 20px;padding-bottom: 7px" ng-switch-when="false"  src="./MappedRouting/app/images/shrinkmappanel.png" alt=""  />
+        </p>
+    </header>
+    <div ng-show="rootjson.isShowToolsBar">
+        <section>
+            <div class="center-block">
+                <button title="{{'Select Stops'|translate}}" ng-class="{true:'control-panel-selected',false:''}[rootjson.isClickSelectOrDrag == 1 ? true:false]" ng-click="selectStopsByRect()"><img src="./MappedRouting/app/images/select2.png" alt=""/></button>
+                <button title="{{'Move Map'|translate}}" ng-class="{true:'control-panel-selected',false:''}[rootjson.isClickSelectOrDrag == 0? true:false]" ng-click="moveMap()"><img src="./MappedRouting/app/images/drag.png" alt=""/></button>
+                <button title="{{'Select Stops'|translate}}" ng-class="{true:'control-panel-selected',false:''}[rootjson.isClickSelectOrDrag == 2?true:false]" ng-click="selectStops()"><img src="./MappedRouting/app/images/select.png" alt=""/></button>
+                <button ng-click="unselect()" title="{{'De-select'|translate}}"><img src="./MappedRouting/app/images/unselect.png" alt=""/></button>
+                <button ng-click="resetMapCenter()" title="{{'Fit to screen'|translate}}"><img src="./MappedRouting/app/images/Fit-to-Screen.png" alt=""/></button>
+            </div>
+        </section>
+        <section>
+            <div class="center-block" ng-switch on="rootjson.isShowAllRouteList">
+                <label class="slidelabel">{{"All Routes"|translate}}</label>
+                <div class="" ng-switch-when="true" title="{{'Hide All Routes'|translate}}" ng-click="hideOrShowAllRouteList()">
+                    <img src="./MappedRouting/app/images/showline.png" alt=""/>
+                </div>
+                <div class="" ng-switch-when="false" title="{{'Show All Routes'|translate}}" ng-click="hideOrShowAllRouteList()">
+                    <img src="./MappedRouting/app/images/hideline.png" alt=""/>
+                </div>
+
+            </div>
+        </section>
+        <section>
+            <div class="center-block" ng-switch on="rootjson.isDrawPolylineList">
+                <label class="slidelabel">{{"Route Lines"|translate}}</label>
+                <div class="" ng-switch-when="true" title="{{'Hide Route Lines'|translate}}" ng-click="hideOrShowAllPolylineList()">
+                    <img src="./MappedRouting/app/images/showline.png" alt=""/>
+                </div>
+                <div class="" ng-switch-when="false" title="{{'Show Route Lines'|translate}}" ng-click="hideOrShowAllPolylineList()">
+                    <img src="./MappedRouting/app/images/hideline.png" alt=""/>
+                </div>
+            </div>
+        </section>
+        <section>
+         
+            <div class="center-block" style="width:100px">
+                <label class="slidelabel"  title="{{rootjson.ShowColumn|translate}}">{{rootjson.ShowColumn|translate}}</label>
+                <ul class="checklist">
+                    <li title="{{field.fieldName}}" style="white-space: nowrap;text-overflow: ellipsis;overflow:hidden" ng-repeat="field in rootjson.Routes[0].showFieldNameList track by $index" ng-if="field.isDisplayOnControlPanel">
+                        <label>
+                            <input type="checkbox" ng-model="field.isShow" ng-click="hideOrShowProductPickType(field.fieldName, field.isShow)">{{field.fieldName}}
+                        </label>
+                    </li>
+                </ul>
+
+            </div>
+        </section>
+    </div>
+</div>

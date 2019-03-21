@@ -1,0 +1,12 @@
+<div>
+    <li class="select-all">
+        <label>
+            <input type="checkbox" ng-model="master" ng-change="masterChange()">{{"Select All" | translate}}
+        </label>
+    </li>
+    <li ng-repeat="cb in listelements track by $index" class="select-check">
+        <label>
+            <input type="checkbox" ng-model="cb.isSelected" ng-change="cbChange()"/>{{cb.selectName | translate}}
+        </label>
+    </li>
+</div>

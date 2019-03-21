@@ -1,0 +1,160 @@
+<div class="table-group"  id="route-list">
+    <span class="fa fa-external-link-square  fa-rotate-90"
+          ng-click="data.rootJson.isShowRouteTable = !data.rootJson.isShowRouteTable"
+          ng-if="!data.rootJson.isShowRouteTable"></span>
+    <table cellpadding="0" cellspacing="0" width="100%" ng-if="data.rootJson.isShowRouteTable">
+        <thead>
+        <tr>
+            <td><span class="fa fa-external-link-square  fa-flip-horizontal" ng-click="data.rootJson.isShowRouteTable = !data.rootJson.isShowRouteTable"></span></td>
+            <td></td>
+            <td style="text-align: left;">{{"Route" | translate}}</td>
+            <td >{{"Color" | translate}}</td>
+            <td >{{"Deliveryman" | translate}}</td>
+            <td style="text-align: right;">{{"Stops" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline" ng-repeat="field in data.rootJson.Routes[0].showFieldNameList track by $index">{{field.fieldName | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Weight" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Pallets" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Travel Time" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Service Time" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Total Time" | translate}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{"Route Cost" | translate}}</td>
+            <td ng-hide="data.rootJson.isShowTimeline">{{"Helper" | translate}}</td>
+            <td ng-hide="data.rootJson.isShowTimeline">{{"Send Message" | translate}}</td>
+
+            <!--&lt;!&ndash;add move to this loadsheet&ndash;&gt;-->
+            <!--<td ng-show="data.rootJson.isShowMoveToThisLoadSheet">-->
+            <!--</td>-->
+
+            <td ng-show="data.rootJson.isShowTimeline" style="text-align: left;padding-left:20px;">
+                <div style="white-space: nowrap;">
+                    <div ng-repeat="headerObj in data.rootJson.timelineHeaderObjList" ng-style="{width: headerObj.width+'px'}"
+                         style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;display: inline-block;" title="{{headerObj.hourText}}">
+                        |{{headerObj.hourText}}
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="route in data.rootJson.Routes track by $index">
+            <td>
+                <input type="checkbox" ng-model="route.isShowRouteList" ng-click="showOrHideAllRoute()">
+            </td>
+            <td ng-click="hideOrShowRouteHandler(route)"><i ng-class="{true:'fa fa-eye',false:'fa fa-eye-slash'}[route.isShowRouteOnMap]" ></i></td>
+            <td style="text-align: left;" ng-switch on="data.rootJson.isShowMoveToThisLoadSheet">
+                <p ng-switch-when="false">{{route.Route}}</p>
+                <a ng-switch-when="true" style="color: #3d5f7a;cursor: pointer;" ng-click="moveToThisLoadSheet(route)">{{route.Route}}</a>
+            </td>
+            <td>
+                <select ng-model="route.Color" ng-change="changeRouteColorHandler(route)" ng-style="{color: '#'+route.Color}">
+                    <option value="0000FF" style="color:#0000FF;" >Blue</option>
+                    <option value="000080" style="color:#000080;" >Navy Blue</option>
+                    <option value="483D8B" style="color:#483D8B;" >Slate Blue</option>
+                    <option value="4682B4" style="color:#4682B4;" >Steel Blue</option>
+                    <option value="00BFFF" style="color:#00BFFF;" >Sky Blue</option>
+                    <option value="228B22" style="color:#228B22;" >Forest Green</option>
+                    <option value="556B2F" style="color:#556B2F;" >Olive Green</option>
+                    <option value="2E8B57" style="color:#2E8B57;" >Sea Green</option>
+                    <option value="32CD32" style="color:#32CD32;" >Lime Green</option>
+                    <option value="9ACD32" style="color:#9ACD32;" >Yellow Green</option>
+                    <option value="FFD700" style="color:#FFD700;" >Gold</option>
+                    <option value="DAA520" style="color:#DAA520;" >Golden Rod</option>
+                    <option value="CDCD00" style="color:#CDCD00;" >Medium Yellow</option>
+                    <option value="8B8B00" style="color:#8B8B00;" >Dark Yellow</option>
+                    <option value="BDB76B" style="color:#BDB76B;" >Khaki</option>
+                    <option value="8B4513" style="color:#8B4513;" >Saddle Brown</option>
+                    <option value="CD853F" style="color:#CD853F;" >Brown</option>
+                    <option value="D2691E" style="color:#D2691E;" >Chocolate Brown</option>
+                    <option value="FF8C00" style="color:#FF8C00;" >Orange</option>
+                    <option value="CD3700" style="color:#CD3700;" >Dark Orange</option>
+                    <option value="FF4500" style="color:#FF4500;" >Orange Red</option>
+                    <option value="FF0000" style="color:#FF0000;" >Red</option>
+                    <option value="FF6347" style="color:#FF6347;" >Tomato Red</option>
+                    <option value="B22222" style="color:#B22222;" >Firebrick Red</option>
+                    <option value="CD5C5C" style="color:#CD5C5C;" >Indian Red</option>
+                    <option value="EE8262" style="color:#EE8262;" >Salmon</option>
+                    <option value="FF1493" style="color:#FF1493;" >Pink</option>
+                    <option value="8B5F65" style="color:#8B5F65;" >Dark Pink</option>
+                    <option value="BC8F8F" style="color:#BC8F8F;" >Rosy Brown</option>
+                    <option value="B03060" style="color:#B03060;" >Maroon</option>
+                    <option value="D02090" style="color:#D02090;" >Violet Red</option>
+                    <option value="FF00FF" style="color:#FF00FF;" >Magenta</option>
+                    <option value="EE82EE" style="color:#EE82EE;" >Violet</option>
+                    <option value="BA55D3" style="color:#BA55D3;" >Orchid Purple</option>
+                    <option value="A020F0" style="color:#A020F0;" >Purple</option>
+                    <option value="9370DB" style="color:#9370DB;" >Medium Purple</option>
+                    <option value="000000" style="color:#000000;" >Black</option>
+                    <option value="363636" style="color:#363636;" >Dark Grey</option>
+                    <option value="8B8989" style="color:#8B8989;" >Light Grey</option>
+                </select>
+            </td>
+            <td>
+                <select ng-model="route.Employee" ng-options="d.UserName as d.UserName for d in data.rootJson.deliverymanList">
+                </select>
+            </td>
+
+            <td style="text-align: right;">{{route.Stops.length}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline" ng-repeat="field in route.showFieldNameList track by $index">{{route.Stops | calculateSumOfNumUnitByStops:field.fieldName}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{route.sumOfWeight}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{route.PalletCount}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{route.totalTravelTime}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{route.totalServiceTime}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{route.SumOfTime}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">${{route.routeCost}}</td>
+            <td ng-hide="data.rootJson.isShowTimeline">
+                <input type="checkbox"  ng-model="route.Helper"  ng-change="helperChangedHandler(route)"/>
+            </td>
+            <td ng-hide="data.rootJson.isShowTimeline"><a  ng-click="sendMessageHandler(route)" href="#">{{"Send" | translate}}</a></td>
+
+            <!--&lt;!&ndash;add move to this loadsheet&ndash;&gt;-->
+            <!--<td ng-show="data.rootJson.isShowMoveToThisLoadSheet">-->
+                <!--<a style="color: #3d5f7a;cursor: pointer;" ng-click="moveToThisLoadSheet(route)">Move to this Load Sheet</a>-->
+            <!--</td>-->
+
+            <td ng-show="data.rootJson.isShowTimeline" style="padding-left: 0px; text-align: left;display: table-cell;">
+                <div class="TimelineParentDiv">
+                    <div style="overflow: visible;">
+                        <div ng-show="route.timelineObj.isShow" class="StartStop" ng-style="{'margin-left': route.timelineObj.startPointOffsetLeft+'px'}"><span>S</span></div>
+                        <div class="RailWay" ng-style="{width: route.timelineObj.startTimeRailWayWidth+'px'}"></div>
+
+                        <div ng-repeat="timeline in route.timelineObj.timelineList" style="display: inline-block;">
+                            <div class="TimeLineStop"
+                                 title="" ng-style="{width:timeline.RectWidth+'px', 'border-color':timeline.RectBorderColor, 'background-color':timeline.RectFillColor}"
+                                 style="padding-left: 1px;">{{timeline.RectText}}</div>
+                            <div class="RailWay" ng-style="{width:timeline.RailWayWidth+'px'}"  title=""></div>
+                        </div>
+
+                        <div class="RailWay" ng-style="{width: route.timelineObj.endTimeRailWayWidth+'px'}"></div>
+                        <div ng-show="route.timelineObj.isShow" class="EndStop"><span>E</span></div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td><span class="fa fa-external-link-square  fa-flip-horizontal" ng-click="data.rootJson.isShowRouteTable = !data.rootJson.isShowRouteTable"></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td style="text-align: right;" >{{data.rootJson.Routes | calculateSumOfStop}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline" ng-repeat="field in data.rootJson.Routes[0].showFieldNameList track by $index">{{data.rootJson.Routes | calculateSumOfNumUnitByStopsByRoutes:field.fieldName}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{data.rootJson.Routes | calculateSumOfFieldByStopsByRoutes:"weight"}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{data.rootJson.Routes | calculateSumOfPalletsByRoutes}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{data.rootJson.Routes | calculateSumOfTimeByStopsByRoutes:"travelTime"}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{data.rootJson.Routes | calculateSumOfTimeByStopsByRoutes:"serviceTime":data.rootJson.HelperPercent}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">{{data.rootJson.Routes | calculateSumOfTimeByStopsByRoutes:"totalTime":data.rootJson.HelperPercent}}</td>
+            <td style="text-align: right;" ng-hide="data.rootJson.isShowTimeline">${{data.rootJson.Routes | calculateSumOfRouteCost:"totalCost":data.rootJson.HelperPercent}}</td>
+            <td ng-hide="data.rootJson.isShowTimeline"></td>
+            <td ng-hide="data.rootJson.isShowTimeline"></td>
+
+            <!--&lt;!&ndash;add move to this loadsheet&ndash;&gt;-->
+            <!--<td ng-show="data.rootJson.isShowMoveToThisLoadSheet">-->
+            <!--</td>-->
+
+            <td ng-show="data.rootJson.isShowTimeline"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

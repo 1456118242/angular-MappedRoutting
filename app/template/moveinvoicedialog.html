@@ -1,0 +1,29 @@
+<div class="move-invoice-dialog">
+	<p class="title">{{"Move Invoice"|translate}}</p>
+	<select ng-model="selectedOption" ng-options="option.dateAndRoute  for option in loadSheetList track by option.LoadSheetID">
+        <!--<option ng-repeat="loadSheetObj in  loadSheetList track by $index" value="{{loadSheetObj.LoadSheetID}}">-->
+            <!--{{loadSheetObj.Date}}  {{loadSheetObj.Route}}-->
+        <!--</option>-->
+    </select>
+	<table cellpadding="0" cellspacing="0" width="100%">
+        <thead>
+            <th>{{"Load Sheet ID"|translate}}</th>
+            <th>{{"Route"|translate}}</th>
+            <th>{{"Date"|translate}}</th>
+            <th>{{"Status"|translate}}</th>
+            <th>{{"Deliveryman"|translate}}</th>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{selectedOption.LoadSheetID}}</td>
+            <td>{{selectedOption.Route}}</td>
+            <td>{{selectedOption.Date}}</td>
+            <td>{{selectedOption.StatusDescription}}</td>
+            <td>{{selectedOption.Deliveryman}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="btn-check text-right">
+        <button class="btn btn-save" ng-click="moveInvoiceSave(selectedOption.LoadSheetID)">{{"Save"|translate}}</button>
+    </div>
+</div>

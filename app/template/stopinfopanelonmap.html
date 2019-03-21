@@ -1,0 +1,14 @@
+
+<div class="markertip" style="z-index:999">
+    <p><a style="font-weight:bold;color:blue;" href="TableView.aspx?TableName=Customers&Search=%7CCustomerID%7E{{stopinfo.CustomerID}}%7EE%7C&SubTable=Stops&LinkField=CustomerID&SubLinkField=CustomerID"
+             target="_blank">{{stopinfo.CustomerID}}</a><span>{{stopinfo.UserName}}</span></p>
+    <p style="font-weight:bold;">{{stopinfo.Company}}</p>
+    <p>{{stopinfo.Address}}</p>
+    <p>{{stopinfo.Address2}}</p>
+    <p><a style="font-weight:bold;color:blue;" href="" ng-click="editGeocodeHandler(stopinfo.stopID, stopinfo.loadSheetID)">{{"Edit Geocode"|translate}}</a></p>
+    <p ng-repeat="s in stopinfo.Services">Service: {{s.StartTime + " - " + s.EndTime}}</p>
+    <p style="font-weight:bold;">{{"Current Stop"|translate}}</p>
+    <p><span ng-repeat="n in stopinfo.numUnitFieldList">{{n.field + " " + n.value + "  "}}</span></p>
+    <p style="font-weight:bold;">{{stopinfo.RouteName}}</p>
+    <p><span ng-repeat="t in stopinfo.totalNumUnitFieldList">{{t.field + " " + t.value + "  "}}</span></p>
+</div>

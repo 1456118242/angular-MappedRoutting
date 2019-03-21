@@ -1,0 +1,14 @@
+<div style="height:120px;">
+    <h4 style="text-align:center;">{{"Message"|translate}}</h4>
+    <div style="margin: 5px;">
+        <span>{{"Route"|translate}}: {{::route}}</span>
+    </div>
+    <div style="margin: 5px;">
+        <span>{{"Route Start Time"|translate}}: {{::startTime}}</span>
+    </div>
+
+    <div style="margin: 10px;" class="btn-check text-right">
+        <button class="btn btn-save" ng-click="sendMessage()">{{"Send"|translate}}</button>
+        <button class="btn btn-cancel" ng-click="closeThisDialog();">{{"Cancel"|translate}}</button>
+    </div>
+</div>

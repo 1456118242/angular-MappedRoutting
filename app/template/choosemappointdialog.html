@@ -1,0 +1,10 @@
+<div class="edit-dialog">
+    <div ng-repeat="m in mapPointObj.mapPoints track by $index">
+    <label> <input type="radio" name="mapPointRadio" ng-value="m.MapPointID" ng-model="mapPointObj.selectedMapPointID"> {{::m.MapPoint}} </label>
+    </div>
+
+    <div class="btn-check">
+        <button ng-click="saveMapPointHandler()" class="btn btn-save btn-md" >{{"Save"|translate}}</button>
+        <button  ng-click="closeThisDialog();" class="btn btn-cancel btn-md">{{"Cancel"|translate}}</button>
+    </div>
+</div>

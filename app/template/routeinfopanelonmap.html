@@ -1,0 +1,10 @@
+
+<div class="markertip" style="z-index:999">
+    <p style="font-weight:bold;">{{routeinfo.Route}}</p>
+    <p>{{routeinfo.Employee}}</p>
+    <p>{{"Stops"|translate}}: {{routeinfo.stopCount}}</p>
+    <p><span ng-repeat="t in routeinfo.totalNumUnitFieldList">{{t.field + " " + t.value + "  "}}</span></p>
+    <p>{{"Travel Time"|translate}}: {{routeinfo.TravelTime}}</p>
+    <p>{{"Service Time"|translate}}: {{routeinfo.ServiceTime}}</p>
+    <p>{{"Total Time"|translate}}: {{routeinfo.TotalTime}}</p>
+</div>

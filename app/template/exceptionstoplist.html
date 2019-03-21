@@ -1,0 +1,8 @@
+<div class="exception-dialog">
+    <h3 >Unable to obtain route stop data</h3>
+    <div class="content-dialog">
+       <p ng-repeat="exceptionObj in exceptionObjList"><span>{{exceptionObj.exceptionStop.UserName}}</span>
+        <button ng-click="setLocation(exceptionObj, $event)">{{"Set Location"|translate}}</button></p>
+        
+    </div>
+</div>

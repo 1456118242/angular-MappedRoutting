@@ -1,0 +1,21 @@
+<div class="print-select-dialog">
+    <p class="title">{{"Print Select"|translate}}</p>
+    <div>
+        <h4 class="selectbox-title">{{"Print Option"|translate}}</h4>
+        <ul class="list-horizontal">
+            <li ng-repeat="option in printOptionList track by $index">
+                <label>
+                    <input type="checkbox" ng-model="option.isSelected">{{option.selectName|translate}}
+                </label>
+            </li>
+        </ul>
+        <ul class="list-vertical">
+            <select-checkbox listelements="listelements"></select-checkbox>
+        </ul>
+    </div>
+    <div class="btn-check text-right">
+        <button class="btn btn-save" ng-click="dialogPrint()">{{"Print"|translate}}</button>
+        <button class="btn btn-cancel" ng-click="dialogClose()">{{"Cancel"|translate}}</button>
+    </div>
+</div>
+

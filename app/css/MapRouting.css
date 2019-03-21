@@ -1,0 +1,961 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.4);
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000000;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-button {
+  background: transparent;
+}
+body {
+  background-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+button {
+  cursor: pointer;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.appearancefix {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.fa {
+  cursor: pointer;
+}
+.btn {
+  font-size: 13px;
+  height: 27px;
+  margin-right: 5px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.btn.btn-lg {
+  font-size: 14px;
+  padding: 12px 16px;
+}
+.btn.btn-md {
+  font-size: 12px;
+  padding: 8px 12px;
+  height: 30px;
+}
+.btn-default {
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+  border: 1px #b0b1b1 solid;
+}
+.btn-default:hover {
+  background: linear-gradient(to bottom, #dfdfdf 0%, #adadad 100%);
+}
+.btn-primary {
+  background: linear-gradient(to bottom, #6b89a1 0%, #406480 100%);
+  border: 1px #406480 solid;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: linear-gradient(to bottom, #4f6678 0%, #2f495d 100%);
+}
+.btn-save {
+  color: #fff;
+  background: #5cb85c !important;
+  border: 1px #5cb85c solid !important;
+}
+.btn-save:hover {
+  background: #449d44;
+}
+.btn-cancel {
+  color: #fff;
+  background: #d9534f !important;
+  border: 1px #d9534f solid;
+}
+.btn-cancel:hover {
+  background: #c9302c;
+}
+label.btn input[type=checkbox] {
+  width: 15px !important;
+  height: 15px !important;
+  margin-right: 4px !important;
+}
+.btn-group {
+  background: #dbe6f2;
+  padding: 3px;
+  position: relative;
+}
+#autoRoute {
+  vertical-align: text-bottom;
+}
+input[type="checkbox"] {
+  margin-right: 2px !important;
+}
+.table-group {
+  position: relative;
+  display: block;
+  min-height: 25px;
+  width: 100%;
+  overflow-x: auto;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+}
+.table-group tbody tr:hover {
+  background-color: #fff;
+}
+.table-group table {
+  overflow: scroll;
+}
+.table-group thead {
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+}
+.table-group td {
+  font-size: 12px;
+  text-align: center;
+  border-right: 1px solid #b0b1b1;
+  border-bottom: 1px solid #b0b1b1;
+  padding: 3px;
+}
+.table-group td input[type=checkbox] {
+  width: 15px !important;
+  height: 15px !important;
+}
+.table-group td select {
+  border-radius: 5px;
+}
+.map-wrapper {
+  position: relative;
+}
+.routelist-content {
+  white-space: nowrap;
+  position: absolute;
+  left: 120px;
+  top: 2px;
+  height: 20px;
+  z-index: 10;
+}
+.routelist-wrapper {
+  display: inline-block;
+  position: relative;
+  min-width: 20px;
+  vertical-align: top;
+  margin-right: 3px;
+}
+.routelist-wrapper .external {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 100;
+}
+.routelist-wrapper .routelist {
+  border: 1px solid #929292;
+  display: inline-block;
+  position: relative;
+  box-shadow: 0px 0px 3px 1px #9E9E9E;
+}
+.routelist-wrapper .routelist .table-view {
+  background: #fff;
+}
+.routelist-wrapper .routelist .stop-list {
+  padding: 5px 0;
+  border-bottom: 1px solid #adadad;
+  cursor: move;
+}
+.routelist-wrapper .routelist .stop-list span.title,
+.routelist-wrapper .routelist .stop-list span.num,
+.routelist-wrapper .routelist .stop-list span.time {
+  height: 40px;
+  vertical-align: top;
+}
+.routelist-wrapper .routelist .stop-list span.title,
+.routelist-wrapper .routelist .stop-list span.num {
+  line-height: 40px;
+  position: relative;
+}
+.routelist-wrapper .routelist .stop-list span.title .title-routename,
+.routelist-wrapper .routelist .stop-list span.num .title-routename {
+  display: inline-block;
+}
+.routelist-wrapper .routelist .stop-list span.title .title-time,
+.routelist-wrapper .routelist .stop-list span.num .title-time {
+  height: 20px;
+  line-height: 20px;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  margin-left: 30px;
+  width: 100px;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.routelist-wrapper .routelist .stop-list:hover {
+  background: #f1f1f1;
+}
+.routelist-wrapper .routelist .stop-list .stop-info {
+  background: #fcfcfc;
+  padding: 5px;
+  margin: 5px;
+  font-size: 12px;
+}
+.routelist-wrapper .routelist .stop-list .stop-info a {
+  font-size: 14px;
+  text-decoration: underline;
+  color: #3b5f7a;
+  cursor: pointer;
+}
+.routelist-wrapper .routelist .stop-list .stop-info a:hover {
+  color: #338ed1;
+}
+.routelist-wrapper .routelist .table-head span,
+.routelist-wrapper .routelist .table-start span,
+.routelist-wrapper .routelist .table-stops span,
+.routelist-wrapper .routelist .table-end span {
+  word-wrap: break-word;
+  font-size: 12px;
+  padding: 2px 5px;
+  width: 30px;
+  display: inline-block;
+  vertical-align: top;
+}
+.routelist-wrapper .routelist .table-head span[title=Phase],
+.routelist-wrapper .routelist .table-start span[title=Phase],
+.routelist-wrapper .routelist .table-stops span[title=Phase],
+.routelist-wrapper .routelist .table-end span[title=Phase] {
+  width: 35px !important;
+}
+.routelist-wrapper .routelist .table-head span:last-of-type,
+.routelist-wrapper .routelist .table-start span:last-of-type,
+.routelist-wrapper .routelist .table-stops span:last-of-type,
+.routelist-wrapper .routelist .table-end span:last-of-type {
+  width: 50px;
+}
+.routelist-wrapper .routelist .table-head span.time,
+.routelist-wrapper .routelist .table-start span.time,
+.routelist-wrapper .routelist .table-stops span.time,
+.routelist-wrapper .routelist .table-end span.time {
+  width: 50px;
+}
+.routelist-wrapper .routelist .table-head span.title,
+.routelist-wrapper .routelist .table-start span.title,
+.routelist-wrapper .routelist .table-stops span.title,
+.routelist-wrapper .routelist .table-end span.title {
+  width: 120px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.routelist-wrapper .routelist .table-head span.title .fa-pencil-square-o,
+.routelist-wrapper .routelist .table-start span.title .fa-pencil-square-o,
+.routelist-wrapper .routelist .table-stops span.title .fa-pencil-square-o,
+.routelist-wrapper .routelist .table-end span.title .fa-pencil-square-o {
+  margin-left: 5px;
+  font-size: 16px;
+}
+.routelist-wrapper .routelist .table-head span.stopslist-column,
+.routelist-wrapper .routelist .table-start span.stopslist-column,
+.routelist-wrapper .routelist .table-stops span.stopslist-column,
+.routelist-wrapper .routelist .table-end span.stopslist-column {
+  width: auto;
+  margin-right: 20px;
+  line-height: 40px;
+}
+.routelist-wrapper .routelist .table-head span.stopslist-column[title="Address"],
+.routelist-wrapper .routelist .table-start span.stopslist-column[title="Address"],
+.routelist-wrapper .routelist .table-stops span.stopslist-column[title="Address"],
+.routelist-wrapper .routelist .table-end span.stopslist-column[title="Address"],
+.routelist-wrapper .routelist .table-head span.stopslist-column[title="City"],
+.routelist-wrapper .routelist .table-start span.stopslist-column[title="City"],
+.routelist-wrapper .routelist .table-stops span.stopslist-column[title="City"],
+.routelist-wrapper .routelist .table-end span.stopslist-column[title="City"] {
+  width: auto;
+}
+.routelist-wrapper .routelist .table-head span .point,
+.routelist-wrapper .routelist .table-start span .point,
+.routelist-wrapper .routelist .table-stops span .point,
+.routelist-wrapper .routelist .table-end span .point {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  background: #cccccc;
+  margin-right: 5px;
+  text-align: center;
+  font-style: normal;
+  vertical-align: text-bottom;
+  line-height: 20px;
+  color: #fff;
+}
+.routelist-wrapper .routelist .table-head {
+  background: #f2f2f2;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
+}
+.routelist-wrapper .routelist .table-stops {
+  height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.routelist-wrapper .routelist .table-end .point {
+  background: #68101f !important;
+}
+.routelist-wrapper .routelist .table-start .time-edit-wrapper .time-input {
+  width: 80px;
+}
+.routelist-wrapper .routelist .table-start .time-edit-wrapper .time-input input {
+  width: 60px;
+}
+.routelist-wrapper .routelist .table-start .time-edit-wrapper .time-input i.fa {
+  margin-left: 5px;
+}
+.routelist-wrapper .routelist .table-start .point {
+  background: #bfdaa5 !important;
+}
+.routelist-wrapper .routelist h5 {
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  background: #f2f2f2;
+}
+.routelist-wrapper .routelist .list-btn {
+  background: #f2f2f2;
+  height: 30px;
+  line-height: 30px;
+  padding: 3px;
+  text-align: center;
+  white-space: normal;
+}
+.routelist-wrapper .routelist .list-btn span {
+  margin: 0 2px;
+}
+.routelist-wrapper .routelist .list-btn .route-name {
+  font-size: 12px;
+  font-weight: bolder;
+}
+.routelist-wrapper .routelist .list-btn .btn-group {
+  background: none;
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.routelist-wrapper .routelist .list-btn .btn-group .btn {
+  margin: 0 !important;
+  background: #fff;
+  border-radius: 5px;
+  float: left;
+  line-height: 0;
+}
+.routelist-wrapper .routelist .list-btn .btn-group .btn:hover {
+  background: #dddddd;
+}
+.routelist-wrapper .routelist .list-btn .btn-group .btn:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.routelist-wrapper .routelist .list-btn .btn-group .dropdown-toggle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px;
+  font-size: 12px;
+  text-align: left;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
+}
+.dropdown-menu li {
+  cursor: pointer;
+  padding: 0 5px;
+}
+.dropdown-menu li a {
+  color: black;
+}
+.dropdown-menu li:hover {
+  background-color: #f1f1f1;
+}
+button.dropdown-toggle[aria-expanded="true"] ~ .dropdown-menu {
+  display: block;
+}
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px !important;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+.toolsbar {
+  border: 1px solid #2e4b60;
+  position: absolute;
+  width: 100px;
+  background: #406480;
+}
+.toolsbar header {
+  height: 15px;
+  background: linear-gradient(to bottom, #6ea9d8 0%, #294357 100%);
+}
+.toolsbar section {
+  margin-bottom: 2px;
+  background: #fff;
+}
+.toolsbar section div.center-block {
+  width: 80px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 5px 0;
+}
+.toolsbar section div.center-block label.slidelabel {
+  font-size: 12px;
+  margin: 0 -10px;
+}
+.toolsbar section div.center-block .checklist {
+  font-size: 14px;
+  text-align: left;
+  padding-left: 10px;
+}
+.toolsbar section div.center-block .checklist li {
+  line-height: 20px;
+  font-size: 12px;
+}
+.toolsbar section div.center-block button {
+  border: 1px solid #9f9f9f;
+  width: 30px !important;
+  height: 30px;
+  display: inline-block;
+  margin-bottom: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0;
+}
+.toolsbar section div.center-block button.control-panel-selected {
+  background: #ccc;
+}
+.markertip {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: auto;
+  border: 1px #000000 solid;
+  background: #fff;
+  padding: 5px;
+  font-size: 12px;
+}
+.markertip p a {
+  margin-right: 5px;
+}
+/* .slideTwo */
+.slideTwo {
+  width: 60px;
+  height: 30px;
+  background: #406480;
+  position: relative;
+  border-radius: 5px;
+  margin: 5px 0;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+.slide-icon-mix {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+}
+.slideTwo:after {
+  content: '\f070';
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  right: 6px;
+}
+.slideTwo:before {
+  content: '\f06e';
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  top: 5px;
+  left: 6px;
+}
+.slideTwo label {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  position: absolute;
+  left: -1px;
+  top: 0px;
+  z-index: 1;
+  color: #ccc;
+  background: #fcfff4;
+  border-radius: 5px;
+  transition: all 0.4s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.slideTwo input[type=checkbox] {
+  visibility: hidden;
+}
+.slideTwo input[type=checkbox]:checked + label {
+  left: 30px;
+}
+.dndPlaceholder {
+  background-color: #ddd !important;
+  min-height: 42px;
+  display: block;
+  position: relative;
+}
+.angular-google-map-container {
+  height: 900px;
+}
+/* Make clicks pass-through */
+.mapped-routing-loading {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.mapped-routing-loading .loadingbar-wrapper {
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  border-radius: 5px;
+  background-color: #6D6D6D;
+}
+.mapped-routing-loading .loadingbar-wrapper .bar {
+  border-radius: 5px;
+}
+.mapped-routing-loading .loadingbar-wrapper .load-text {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  font-size: 50px;
+  margin-left: -35px;
+  color: #272727;
+}
+#loading-bar {
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -webkit-transition: 350ms linear all;
+  -moz-transition: 350ms linear all;
+  -o-transition: 350ms linear all;
+  transition: 350ms linear all;
+}
+#loading-bar.ng-enter,
+#loading-bar.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+#loading-bar.ng-enter.ng-enter-active,
+#loading-bar.ng-leave {
+  opacity: 1;
+}
+#loading-bar .bar {
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+  background: #29d;
+  z-index: 10002;
+  height: 10px;
+}
+.table-group > .fa-external-link-square {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+#move-stop-div-on-map {
+  position: absolute;
+  width: 350px;
+  height: 25px;
+  background: #DED9CE;
+  border: 1px solid CadetBlue;
+}
+.exception-dialog h3 {
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  margin-top: -15px;
+}
+.exception-dialog .content-dialog {
+  text-align: center;
+  width: 100%;
+  margin-top: 5px;
+  height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.exception-dialog .content-dialog p {
+  text-align: left;
+}
+.list-horizontal li {
+  font-size: 14px;
+  display: inline-block;
+  margin-right: 5px;
+}
+.list-horizontal li input[type="checkbox"] {
+  margin-right: 2px;
+}
+.ngdialog.ngdialog-theme-exception-geocode .ngdialog-content {
+  width: 70% !important;
+}
+.ngdialog.ngdialog-theme-exception-stoplist .ngdialog-content {
+  width: 400px !important;
+}
+.ngdialog-content .content-dialog button {
+  background: none;
+  border: none;
+  color: #2F2FBB;
+  cursor: pointer;
+  font-size: 14px;
+  vertical-align: baseline;
+}
+.ngdialog-content .content-dialog button:active {
+  border: none;
+}
+.ngdialog-content .content-dialog button:disabled {
+  color: #777;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.ngdialog-content .edit-dialog {
+  margin-left: 30px;
+}
+.ngdialog-content .edit-dialog .btn-check {
+  text-align: right;
+}
+.move-invoice-dialog .list-vertical,
+.print-summary-dialog .list-vertical,
+.print-select-dialog .list-vertical,
+.print-dialog .list-vertical,
+.ngdialog-move-stop .list-vertical,
+.ngdialog-change-phase .list-vertical,
+.select-routes-dialog .list-vertical,
+.ngdialog-theme-default .list-vertical {
+  font-size: 14px;
+}
+.move-invoice-dialog .list-vertical .select-all,
+.print-summary-dialog .list-vertical .select-all,
+.print-select-dialog .list-vertical .select-all,
+.print-dialog .list-vertical .select-all,
+.ngdialog-move-stop .list-vertical .select-all,
+.ngdialog-change-phase .list-vertical .select-all,
+.select-routes-dialog .list-vertical .select-all,
+.ngdialog-theme-default .list-vertical .select-all {
+  font-weight: bolder;
+  font-size: 16px;
+}
+.move-invoice-dialog .list-vertical .select-check,
+.print-summary-dialog .list-vertical .select-check,
+.print-select-dialog .list-vertical .select-check,
+.print-dialog .list-vertical .select-check,
+.ngdialog-move-stop .list-vertical .select-check,
+.ngdialog-change-phase .list-vertical .select-check,
+.select-routes-dialog .list-vertical .select-check,
+.ngdialog-theme-default .list-vertical .select-check {
+  margin-left: 20px;
+  font-size: 14px;
+}
+.move-invoice-dialog p.title,
+.print-summary-dialog p.title,
+.print-select-dialog p.title,
+.print-dialog p.title,
+.ngdialog-move-stop p.title,
+.ngdialog-change-phase p.title,
+.select-routes-dialog p.title,
+.ngdialog-theme-default p.title {
+  font-size: 16px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+.move-invoice-dialog select,
+.print-summary-dialog select,
+.print-select-dialog select,
+.print-dialog select,
+.ngdialog-move-stop select,
+.ngdialog-change-phase select,
+.select-routes-dialog select,
+.ngdialog-theme-default select {
+  width: 100%;
+  border-radius: 3px;
+}
+.move-invoice-dialog table,
+.print-summary-dialog table,
+.print-select-dialog table,
+.print-dialog table,
+.ngdialog-move-stop table,
+.ngdialog-change-phase table,
+.select-routes-dialog table,
+.ngdialog-theme-default table {
+  border-collapse: collapse;
+  border: none;
+  margin: 10px 0;
+  font-size: 14px;
+  width: 100%;
+}
+.move-invoice-dialog table tbody tr:hover,
+.print-summary-dialog table tbody tr:hover,
+.print-select-dialog table tbody tr:hover,
+.print-dialog table tbody tr:hover,
+.ngdialog-move-stop table tbody tr:hover,
+.ngdialog-change-phase table tbody tr:hover,
+.select-routes-dialog table tbody tr:hover,
+.ngdialog-theme-default table tbody tr:hover {
+  background-color: #fff;
+}
+.move-invoice-dialog table thead,
+.print-summary-dialog table thead,
+.print-select-dialog table thead,
+.print-dialog table thead,
+.ngdialog-move-stop table thead,
+.ngdialog-change-phase table thead,
+.select-routes-dialog table thead,
+.ngdialog-theme-default table thead {
+  width: 100%;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+}
+.move-invoice-dialog table td,
+.print-summary-dialog table td,
+.print-select-dialog table td,
+.print-dialog table td,
+.ngdialog-move-stop table td,
+.ngdialog-change-phase table td,
+.select-routes-dialog table td,
+.ngdialog-theme-default table td,
+.move-invoice-dialog table th,
+.print-summary-dialog table th,
+.print-select-dialog table th,
+.print-dialog table th,
+.ngdialog-move-stop table th,
+.ngdialog-change-phase table th,
+.select-routes-dialog table th,
+.ngdialog-theme-default table th {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #b0b1b1;
+}
+.geocode-dialog p {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 5px;
+  margin-top: -10px;
+}
+.geocode-dialog .controls {
+  width: 85%;
+}
+@media screen and (max-width: 1068px) {
+  .geocode-dialog .controls {
+    width: 100%;
+  }
+}
+.geocode-dialog .btn-control {
+  width: 14.5%;
+  display: inline-block;
+  text-align: right;
+}
+@media screen and (max-width: 1068px) {
+  .geocode-dialog .btn-control {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+  }
+  .geocode-dialog .btn-control button {
+    width: 49% !important;
+  }
+}
+.geocode-dialog button {
+  margin-right: 0 !important;
+  width: 48% !important;
+}
+.StartStop,
+.EndStop {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  border: solid 1px #999;
+  border-radius: 40px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.StartStop span,
+.EndStop span {
+  display: block;
+  margin: 0px;
+  border: solid 1px #999;
+  border-radius: 36px;
+  width: 18px;
+  height: 18px;
+}
+.RailWay {
+  display: inline-block;
+  background: url(../../app/images/railWay.png) repeat-x left center;
+  height: 24px;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.TimeLineStop {
+  display: inline-block;
+  background: #fff;
+  height: 20px;
+  border: solid 2px #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.TimelineParentDiv div {
+  white-space: nowrap;
+}
+.TimelineParentDiv {
+  font-size: 0;
+}
+.ngdialog-move-stop .ngdialog-content {
+  width: 40% !important;
+  min-width: 500px !important;
+}
+.ngdialog-move-stop {
+  padding-top: 30px !important;
+  padding-bottom: 0px !important;
+}
+.btn-check {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+[class*="ews-icon-"]{
+  margin-top: 3px;
+  background-image: none;
+}
+.ews-input-ajax-select {
+  margin: 10px 0px;
+}
+[class*="ews-title-"]{
+
+  text-align: center;
+  display: inline-block;
+}
+table#DateTable {
+  display: inline-block;
+}
+.DatePickerField td img {
+  height: fit-content !important;
+}
+table#LoadSheetAdd_input {
+  margin: 0px;
+}
+.ews-title-deliveryman,.ews-title-route{
+  margin: 0 6px;
+  width: 137px;
+}
+.ews-title-data {
+  margin: 0 3px;
+  width: 90px;
+}
+#showloadsheetadddialog td{
+  border: 0px;
+}
+#showloadsheetadddialog tr:hover{
+  background-color: #f0f0f0 !important;
+}
+.ngdialog-theme-default table{
+  margin: 0px !important;
+}
+#showloadsheetadddialog {
+  margin-top: -15px;
+}
+td.delivery {
+  position: relative;
+}
+td.route{
+  position: relative;
+}
+i.fa.fa-sort-desc {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  right: 0px;
+  top: 0px;
+  margin: 8px;
+  margin-right: 14px;
+}
+.autocomplete ul{
+  position: absolute;
+  left: 10px;
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+  border-bottom: 1px solid #888;
+  z-index: 1;
+  overflow-y:scroll;
+  max-height: 400px;
+}
+
+.autocomplete li{
+  white-space: nowrap;
+  text-align: left;
+  list-style:none;
+  padding:0.4em;
+  background-color: #fff;
+}
+
+.autocomplete li.active{
+  width: 100%;
+  background-color: #4bf;
+}
+
+.autocomplete .highlight {
+  background-color: #E2E2E2;
+}
+
+.autocomplete li.active .highlight {
+  background: #666;
+  color: #fff;
+}

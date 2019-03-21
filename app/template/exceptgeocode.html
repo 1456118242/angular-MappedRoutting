@@ -1,0 +1,9 @@
+<div class="geocode-dialog">
+    <p>{{"Edit Customer Geocode"|translate}}</p>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" value="{{inputValue}}">
+    <div class="btn-control">
+        <button id="geocode-search" ng-click="codeAddress()">{{"Search"|translate}}</button>
+        <button id="geocode-save" ng-click="saveLatLng()">{{"Save"|translate}}</button>
+    </div>
+    <div id="geocede-map" style="height:300px"></div>
+</div>

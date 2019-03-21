@@ -1,0 +1,6 @@
+<div>Some routes do not have any Map Points. Please add a Map Point for these routes, otherwise the mapped routing cannot draw the route.</div>
+<br>
+<div ng-repeat="r in routeList">
+    <a target="_blank" href="TableView.aspx?TableName=Routes&Search=%7cRouteID~{{r.routeID}}~E%7c">{{r.route}}</a>
+</div>
+<br>

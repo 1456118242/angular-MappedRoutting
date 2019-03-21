@@ -1,0 +1,20 @@
+<body ng-app="mappedRoutingApp">
+<div ng-controller="mappedRoutingController as data">
+    <button-bar></button-bar>
+    <route-table></route-table>
+    <div class="map-wrapper">
+        <div class="routelist-content">
+            <route-list route="route" rootjson="data.rootJson" events = "data.events" ng-repeat="route in data.rootJson.Routes track by $index"></route-list>
+        </div>
+        <my-control-panel rootjson="data.rootJson"></my-control-panel>
+        <div ng-controller="GoogleMapController as mapObj">
+            <ui-gmap-google-map center='mapObj.map.center' zoom='mapObj.map.zoom' options="mapObj.map.options" control = "mapObj.map.control" draggable="true" events="mapObj.map.mapEvents">
+
+            </ui-gmap-google-map>
+        </div>
+        <stop-info-panel-on-map ng-if="data.rootJson.currentShowStopInfoObj.isShow" stopinfo="data.rootJson.currentShowStopInfoObj"></stop-info-panel-on-map>
+        <route-info-panel-on-map ng-if="data.rootJson.currentShowRouteInfoObj.isShow" routeinfo="data.rootJson.currentShowRouteInfoObj"></route-info-panel-on-map>
+    </div>
+
+</div>
+</body>

@@ -1,0 +1,85 @@
+<div>
+    <div class="stop-list" ng-if="stop.CanMove=='0'" dnd-nodrag ng-style="getBackgroundColor(stop)">
+        <div ng-repeat="event in stop.routeActivityEventList" style="font-size: 10px;margin-left: 5px; background: linear-gradient(to right, Yellow 0%, #EBEBEC 60%);">
+            {{event.startTimePlanned}}-{{event.endTimePlanned}} ({{event.objective|translate}})
+        </div>
+        <div ng-switch on="route.showColumnNum">
+            <span class="time"><p ng-style="{color:stop.startTimeColor}">{{stop.StartTime|timeFormat}}</p><p ng-style="{color:stop.endTimeColor}">{{stop.EndTime|timeFormat}}</p></span>
+            <span class="title" title="{{::stop.UserName}}" style="width: 126px;">
+                <i class="point" ng-if="stop.InvoiceLocked=='0'"  ng-style="{background: '#'+route.Color}">{{stop.imageIndex}}</i>
+                <i class="point" ng-if="stop.InvoiceLocked=='1'"  ng-style="{color: '#000', height: '16px',width: '16px','border-radius': 'unset','background-color':'#fff','background-image': 'url(images/IconSprite.png)','background-position': '-384px -64px'}">{{stop.imageIndex}}</i>
+
+                <i title="{{stop.autoRouteStr}}" ng-style="{'border-bottom':stop.autoRouteColor, 'font-style':'normal'}">{{::stop.UserName}}</i>
+                <p title="{{stop.autoRouteStr}}" ng-style="{color: stop.serviceWindowColor}" style="overflow:visible" class="title-time">{{stop.displayServiceWindow}}</p>
+            </span>
+            <span style="text-align: right;" class="num" ng-if="numUnitFieldObj.isShow"  ng-repeat="numUnitFieldObj in stop.numUnitFieldList track by $index"
+
+                  title = "{{::numUnitFieldObj.field|translate}}"
+            >
+            {{::numUnitFieldObj.value|number}}
+        </span>
+            <span style="text-align: right;" class="num" title={{"Weight"|translate}}>{{::stop.Weight|number}}</span>
+            <span style="text-align: right;" class="stopslist-column" ng-switch-when="0" title="{{'Distance between stops'|translate}}">{{stop.distanceBetween|number}}</span>
+            <span style="text-align: right;" class="stopslist-column" ng-switch-when="1" title="{{'Distance from warehouse'|translate}}">{{stop.distanceWarehouse|number}}</span>
+            <span style="text-align: left;" class="stopslist-column" ng-switch-when="2" title="{{'City'|translate}}">{{stop.City}}</span>
+            <span style="text-align: left;" class="stopslist-column" ng-switch-when="3" title="{{'Address'|translate}}">{{stop.Address}}</span>
+        </div>
+        <div class="stop-info" ng-if="stop.isShowStopInfo">
+            <p>{{::stop.UserName}} <a href="TableView.aspx?TableName=Customers&Search=%7CCustomerID%7E{{::stop.CustomerID}}%7EE%7C&SubTable=Stops&LinkField=CustomerID&SubLinkField=CustomerID"
+                                      target="_blank">
+                {{::stop.CustomerID}}</a></p>
+            <p>{{::stop.Company}}</p>
+            <p>{{::stop.Address}}</p>
+            <p>{{::stop.Address2}}</p>
+            <p>{{::stop.City + ", " + stop.State + ", " + stop.PostalCode}}</p>
+            <p>
+                <a ng-click="geocodeStop(stop, route)">{{"Edit Geocode"|translate}}</a>
+                <a ng-click="moveInvoice(stop, route)" >{{"Move Invoice"|translate}}</a>
+            </p>
+            <p ng-repeat="s in stop.Services">{{s.StartTime + " - " + s.EndTime}}</p>
+        </div>
+        <!--<div ng-repeat="event in stop.routeActivityEventList" style="font-size: 10px;margin-left: 5px; background: linear-gradient(to right, Yellow 0%, #EBEBEC 60%);">-->
+        <!--{{event.startTimePlanned}}-{{event.endTimePlanned}} ({{event.objective|translate}})-->
+        <!--</div>-->
+    </div>
+
+    <div class="stop-list" ng-if="stop.CanMove=='1'" ng-style="getBackgroundColor(stop)">
+        <div ng-repeat="event in stop.routeActivityEventList" style="font-size: 10px;margin-left: 5px; background: linear-gradient(to right, Yellow 0%, #EBEBEC 60%);">
+            {{event.startTimePlanned}}-{{event.endTimePlanned}} ({{event.objective|translate}})
+        </div>
+        <div ng-switch on="route.showColumnNum">
+            <span class="time"><p ng-style="{color:stop.startTimeColor}">{{stop.StartTime|timeFormat}}</p><p ng-style="{color:stop.endTimeColor}">{{stop.EndTime|timeFormat}}</p></span>
+            <span class="title" title="{{::stop.UserName}}" style="width: 126px;">
+                <i class="point" ng-if="stop.InvoiceLocked=='0'"  ng-style="{background: '#'+route.Color}">{{stop.imageIndex}}</i>
+                <i class="point" ng-if="stop.InvoiceLocked=='1'"  ng-style="{color: '#000', height: '16px',width: '16px','border-radius': 'unset','background-color':'#fff','background-image': 'url(images/IconSprite.png)','background-position': '-384px -64px'}">{{stop.imageIndex}}</i>
+                <i title="{{stop.autoRouteStr}}" ng-style="{'border-bottom':stop.autoRouteColor, 'font-style':'normal'}">{{::stop.UserName}}</i>
+                <p title="{{stop.autoRouteStr}}" ng-style="{color: stop.serviceWindowColor}" style="overflow:visible" class="title-time">{{stop.displayServiceWindow}}</p>
+            </span>
+            <span style="text-align: right;" class="num" ng-if="numUnitFieldObj.isShow"  ng-repeat="numUnitFieldObj in stop.numUnitFieldList track by $index"
+
+                  title = "{{::numUnitFieldObj.field|translate}}"
+            >
+            {{::numUnitFieldObj.value|number}}
+        </span>
+            <span style="text-align: right;" class="num" title={{"Weight"|translate}}>{{::stop.Weight|number}}</span>
+            <span style="text-align: right;" class="stopslist-column" ng-switch-when="0" title="{{'Distance between stops'|translate}}">{{stop.distanceBetween|number}}</span>
+            <span style="text-align: right;" class="stopslist-column" ng-switch-when="1" title="{{'Distance from warehouse'|translate}}">{{stop.distanceWarehouse|number}}</span>
+            <span style="text-align: left;" class="stopslist-column" ng-switch-when="2" title="{{'City'|translate}}">{{stop.City}}</span>
+            <span style="text-align: left;" class="stopslist-column" ng-switch-when="3" title="{{'Address'|translate}}">{{stop.Address}}</span>
+        </div>
+        <div class="stop-info" ng-if="stop.isShowStopInfo">
+            <p>{{::stop.UserName}} <a href="TableView.aspx?TableName=Customers&Search=%7CCustomerID%7E{{::stop.CustomerID}}%7EE%7C&SubTable=Stops&LinkField=CustomerID&SubLinkField=CustomerID"
+                                      target="_blank">
+                {{::stop.CustomerID}}</a></p>
+            <p>{{::stop.Company}}</p>
+            <p>{{::stop.Address}}</p>
+            <p>{{::stop.Address2}}</p>
+            <p>{{::stop.City + ", " + stop.State + ", " + stop.PostalCode}}</p>
+            <p>
+                <a ng-click="geocodeStop(stop, route)">{{"Edit Geocode"|translate}}</a>
+                <a ng-click="moveInvoice(stop, route)" >{{"Move Invoice"|translate}}</a>
+            </p>
+            <p ng-repeat="s in stop.Services">{{s.StartTime + " - " + s.EndTime}}</p>
+        </div>
+    </div>
+</div>

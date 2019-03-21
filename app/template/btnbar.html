@@ -1,0 +1,16 @@
+<div class="btn-group" id="btn-group">
+    <button ng-click="backOptimizerHandler()">{{"Optimizer" | translate}}</button>
+    <select name="" id="" class="btn btn-default " ng-model="data.rootJson.isSaveLoadSheetOnly">
+        <option value="true">{{"Save Changes to Current Load Sheet Only" | translate}}</option>
+        <option value="false">{{"Save Changes to Load Sheet and Route" | translate}}</option>
+    </select>
+    <button ng-click="saveChangesHandler(data.rootJson)">{{"Save Changes" | translate}}</button>
+    <label for="autoRoute" class="btn btn-check btn-default">
+        <input type="checkbox" id="autoRoute" ng-model="data.rootJson.isAutoRoute">{{"Auto-Route"| translate}}
+    </label>
+    <button ng-click="reCalculateHandler(data.rootJson)">{{"Re-Calculate"| translate}}</button>
+    <button ng-click="printHandler()">{{"Print" | translate}}</button>
+    <button ng-click="printSummaryHandler(data.rootJson.Routes)">{{"Print Summary" | translate}}</button>
+    <button ng-click="showTimelineHandler(data.rootJson);">{{  data.rootJson.isShowTimeline ? "Hide Timeline" : "Show Timeline" | translate}}</button>
+    <button ng-click="showLoadSheetAdd(data.rootJson)">{{"Add Load Sheet"| translate}}</button>
+</div>

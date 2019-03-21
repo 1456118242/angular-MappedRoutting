@@ -1,0 +1,870 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  &-track {
+    border-radius: 10px;
+    background: transparent;
+  }
+  &-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    &:hover {
+      background-color: rgba(0, 0, 0, 1);
+    }
+  }
+  &-corner {
+    background: transparent;
+  }
+  &-button {
+    background: transparent;
+  }
+}
+
+body {
+  background-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+button {
+  cursor: pointer;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.appearancefix {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.circle(@r: 8px;
+@color: #ccc;
+) {
+  width: @r*2;
+  height: @r*2;
+  border-radius: @r;
+  display: inline-block;
+  background: @color;
+}
+
+.fa {
+  cursor: pointer;
+}
+
+.btn {
+  @padding: 4px;
+  font-size: 13px;
+  height: 27px;
+  margin-right: 5px;
+  border-radius: 3px;
+  padding: @padding @padding*2;
+  cursor: pointer;
+  &.btn-lg {
+    font-size: 14px;
+    padding: @padding*3 @padding*4;
+  }
+  &.btn-md {
+    font-size: 12px;
+    padding: @padding*2 @padding*3;
+    height: 30px;
+  }
+}
+
+.btn-default {
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+  border: 1px #b0b1b1 solid;
+  &:hover {
+    background: linear-gradient(to bottom, #dfdfdf 0%, #adadad 100%);
+  }
+}
+
+.btn-primary {
+  background: linear-gradient(to bottom, #6b89a1 0%, #406480 100%);
+  border: 1px #406480 solid;
+  color: #fff;
+  &:hover {
+    background: linear-gradient(to bottom, #4f6678 0%, #2f495d 100%);
+  }
+}
+
+.btn-save {
+  @color: #5cb85c;
+  color: #fff;
+  background: @color !important;
+  border: 1px @color solid !important;
+  &:hover {
+    background: darken(@color, 10%)
+  }
+}
+
+.btn-cancel {
+  @color: #d9534f;
+  color: #fff;
+  background: @color !important;
+  border: 1px @color solid;
+  &:hover {
+    background: darken(@color, 10%)
+  }
+}
+
+label.btn {
+  //padding: 6px 8px;
+  input[type=checkbox] {
+    width: 15px !important;
+    height: 15px !important;
+    margin-right: 4px !important;
+  }
+}
+
+.btn-group {
+  background: #dbe6f2;
+  padding: 3px;
+  position: relative;
+}
+
+#autoRoute {
+  vertical-align: text-bottom;
+}
+input[type="checkbox"]{
+  margin-right: 2px !important;
+}
+.table-group {
+  position: relative;
+  display: block;
+  min-height: 25px;
+  width: 100%;
+  overflow-x:auto;
+  background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+  tbody {
+    tr {
+      &:hover {
+        background-color: #fff;
+      }
+    }
+  }
+  table {
+    overflow: scroll;
+  }
+  thead {
+    background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+  }
+  td {
+    font-size: 12px;
+    text-align: center;
+    border-right: 1px solid #b0b1b1;
+    border-bottom: 1px solid #b0b1b1;
+    padding: 3px;
+    //        height: 100%;
+    input[type=checkbox] {
+      width: 15px !important;
+      height: 15px !important;
+    }
+    select {
+      border-radius: 5px;
+    }
+  }
+}
+.map-wrapper {
+  position: relative;
+}
+
+.routelist-content {
+  white-space: nowrap;
+  position: absolute;
+  left: 120px;
+  top: 2px;
+  height: 20px;
+  z-index: 10;
+}
+
+.routelist-wrapper {
+  display: inline-block;
+  position: relative;
+  min-width: 20px;
+  vertical-align: top;
+  margin-right: 3px;
+  .external {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 100;
+  }
+  .routelist {
+    border: 1px solid #929292;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0px 0px 3px 1px #9E9E9E;
+    .table-view {
+      background: #fff;
+      //overflow-x: hidden;
+    }
+    .stop-list {
+      padding: 5px 0;
+      border-bottom: 1px solid #adadad;
+      cursor: move;
+      span.title,
+      span.num,
+      span.time {
+        height: 40px;
+        vertical-align: top;
+      }
+      span.title,
+      span.num {
+        line-height: 40px;
+        position: relative;
+        .title-routename{
+            display:inline-block;
+        }
+        .title-time {
+          height: 20px;
+          line-height: 20px;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          margin-left: 30px;
+          width: 100px;
+          font-size: 12px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+      &:hover {
+        background: #f1f1f1;
+      }
+      .stop-info {
+        background: #fcfcfc;
+        padding: 5px;
+        margin: 5px;
+        font-size: 12px;
+        a {
+          font-size: 14px;
+          text-decoration: underline;
+          color: #3b5f7a;
+          cursor: pointer;
+          &:hover {
+            color: #338ed1;
+          }
+        }
+      }
+    }
+    .table-head,
+    .table-start,
+    .table-stops,
+    .table-end {
+      span {
+        word-wrap: break-word;
+        font-size: 12px;
+        padding: 2px 5px;
+        width: 30px;
+        display: inline-block;
+        vertical-align: top;
+        &[title=Phase]{
+            width:35px !important;
+        }
+        &:last-of-type {
+          width: 50px;
+        }
+        &.time {
+          width: 50px;
+        }
+        &.title {
+          width: 120px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          .fa-pencil-square-o {
+            margin-left: 5px;
+            font-size: 16px;
+          }
+        }
+        &.stopslist-column {
+          width: auto;
+          margin-right: 20px;
+          line-height: 40px;
+          &[title="Address"] , &[title="City"]{
+            width: auto;
+          }
+
+        }
+
+        .point {
+          .circle(10px);
+          margin-right: 5px;
+          text-align: center;
+          font-style: normal;
+          vertical-align: text-bottom;
+          line-height: 20px;
+          color: #fff;
+        }
+      }
+    }
+    .table-head {
+      background: #f2f2f2;
+      border-bottom: 1px solid #000;
+      border-top: 1px solid #000;
+    }
+    .table-stops {
+      height: 500px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .table-end {
+      .point {
+        background: #68101f !important;
+      }
+    }
+    .table-start {
+      .time-edit-wrapper {
+        .time-input {
+          width: 80px;
+          input {
+            width: 60px;
+          }
+          i.fa {
+            margin-left: 5px;
+          }
+        }
+      }
+      .point {
+        background: #bfdaa5 !important;
+      }
+    }
+    h5 {
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+      background: #f2f2f2;
+    }
+    .list-btn {
+      background: #f2f2f2;
+      height: 30px;
+      line-height: 30px;
+      padding: 3px;
+      text-align: center;
+      white-space: normal;
+      span {
+        margin: 0 2px;
+      }
+      .route-name{
+         font-size:12px;
+         font-weight: bolder;
+      }
+      .btn-group {
+        background: none;
+        padding: 0;
+        display: inline-block;
+        vertical-align: middle;
+        .btn {
+          margin: 0 !important;
+          background: #fff;
+          border-radius: 5px;
+          float: left;
+          line-height:0;
+          &:hover {
+            background: #dddddd;
+          }
+        }
+        .btn:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .dropdown-toggle {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          border-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px;
+  font-size: 12px;
+  text-align: left;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.175);
+  li {
+    cursor: pointer;
+    padding: 0 5px;
+    a {
+      color: black;
+    }
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+}
+
+button.dropdown-toggle[aria-expanded="true"] ~ .dropdown-menu {
+  display: block;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px !important;
+  vertical-align: middle;
+  border-top: 4px dashed;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.toolsbar {
+  border: 1px solid #2e4b60;
+  position: absolute;
+  width: 100px;
+  background: #406480;
+  header {
+    height: 15px;
+    background: linear-gradient(to bottom, #6ea9d8 0%, #294357 100%);
+  }
+  section {
+    margin-bottom: 2px;
+    background: #fff;
+    div.center-block {
+      width: 80px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 5px 0;
+      label.slidelabel {
+        font-size: 12px;
+        margin: 0 -10px;
+      }
+      .checklist {
+        font-size: 14px;
+        text-align: left;
+        padding-left: 10px;
+        li {
+          line-height: 20px;
+          font-size: 12px;
+        }
+      }
+      button {
+        border: 1px solid #9f9f9f;
+        width: 30px !important;
+        height: 30px;
+        display: inline-block;
+        margin-bottom: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        padding: 0;
+        &.control-panel-selected {
+          background: #ccc;
+        }
+
+      }
+    }
+  }
+}
+
+.markertip {
+  @width: auto;
+  @bdcolor: #000;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: @width;
+  border: 1px @bdcolor solid;
+  background: #fff;
+  padding: 5px;
+  font-size: 12px;
+  p {
+    a {
+      margin-right: 5px;
+    }
+  }
+}
+
+/* .slideTwo */
+
+@slide-width: 30px;
+@font-size: 16px;
+@border-radius: 5px;
+.slideTwo {
+  width: @slide-width*2;
+  height: @slide-width;
+  background: #406480;
+  position: relative;
+  border-radius: @border-radius;
+  margin: 5px 0;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.slide-icon-mix {
+  color: #fff;
+  font-size: @font-size;
+  position: absolute;
+  top: 5px;
+}
+
+.slideTwo:after {
+  content: '\f070';
+  .slide-icon-mix;
+  right: 6px;
+}
+
+.slideTwo:before {
+  content: '\f06e';
+  .slide-icon-mix;
+  left: 6px;
+}
+
+.slideTwo label {
+  display: block;
+  width: @slide-width;
+  height: @slide-width;
+  line-height: @slide-width;
+  cursor: pointer;
+  position: absolute;
+  left: -1px;
+  top: 0px;
+  z-index: 1;
+  color: #ccc;
+  background: #fcfff4;
+  border-radius: @border-radius;
+  transition: all 0.4s ease;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.slideTwo input[type=checkbox] {
+  visibility: hidden;
+}
+
+.slideTwo input[type=checkbox]:checked + label {
+  left: @slide-width;
+}
+
+.dndPlaceholder {
+  background-color: #ddd !important;
+  min-height: 42px;
+  display: block;
+  position: relative;
+}
+
+.angular-google-map-container {
+  height: 900px;
+}
+
+/* Make clicks pass-through */
+
+.mapped-routing-loading {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .loadingbar-wrapper {
+    @barwidth: 400px;
+    @center: 50%;
+    width: @barwidth;
+    position: absolute;
+    left: @center;
+    top: @center;
+    margin-left: -@barwidth/2;
+    border-radius: 5px;
+    background-color: #6D6D6D;
+    .bar {
+      border-radius: 5px;
+    }
+    .load-text {
+      @fontsize: 50px;
+      position: absolute;
+      left: @center;
+      top: 10px;
+      font-size: @fontsize;
+      margin-left: -35px;
+      color: #272727;
+    }
+  }
+}
+
+#loading-bar {
+  pointer-events: none;
+  -webkit-pointer-events: none;
+  -webkit-transition: 350ms linear all;
+  -moz-transition: 350ms linear all;
+  -o-transition: 350ms linear all;
+  transition: 350ms linear all;
+}
+
+#loading-bar.ng-enter,
+#loading-bar.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+#loading-bar.ng-enter.ng-enter-active,
+#loading-bar.ng-leave {
+  opacity: 1;
+}
+
+#loading-bar .bar {
+  -webkit-transition: width 350ms;
+  -moz-transition: width 350ms;
+  -o-transition: width 350ms;
+  transition: width 350ms;
+  background: #29d;
+  z-index: 10002;
+  height: 10px;
+}
+
+.table-group > .fa-external-link-square {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+#move-stop-div-on-map {
+  position: absolute;
+  width: 350px;
+  height: 25px;
+  background: #DED9CE;
+  border: 1px solid CadetBlue;
+}
+
+.exception-dialog {
+  h3 {
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    margin-top: -15px;
+  }
+  .content-dialog {
+    text-align: center;
+    width: 100%;
+    margin-top: 5px;
+    height: 300px;
+    max-height: 300px;
+    overflow-y: scroll;
+    p {
+      text-align: left;
+    }
+  }
+}
+.list-horizontal{
+  li{
+    font-size: 14px;
+    display: inline-block;
+    margin-right: 5px;
+    input[type="checkbox"]{
+      margin-right: 2px;
+    }
+  }
+}
+.ngdialog.ngdialog-theme-exception-geocode .ngdialog-content {
+  width: 70% !important;
+}
+
+.ngdialog.ngdialog-theme-exception-stoplist .ngdialog-content {
+  width: 400px !important;
+}
+
+.ngdialog-content {
+  .content-dialog {
+    button {
+      background: none;
+      border: none;
+      color: #2F2FBB;
+      cursor: pointer;
+      font-size: 14px;
+      vertical-align: baseline;
+      &:active {
+        border: none;
+      }
+      &:disabled {
+        color: #777;
+        text-decoration: line-through;
+        cursor: not-allowed;
+      }
+    }
+  }
+  .edit-dialog {
+    margin-left: 30px;
+    .btn-check {
+      text-align: right;
+    }
+  }
+}
+
+.move-invoice-dialog, .print-summary-dialog ,.print-select-dialog,.print-dialog ,.ngdialog-move-stop,.ngdialog-change-phase ,.select-routes-dialog,.ngdialog-theme-default{
+
+  .list-vertical{
+    font-size: 14px;
+    .select-all{
+      font-weight: bolder;
+      font-size: 16px;
+    }
+    .select-check{
+      margin-left: 20px;
+      font-size: 14px;
+    }
+  }
+  p.title {
+    font-size: 16px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  select {
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  table {
+    border-collapse: collapse;
+    border: none;
+    tbody {
+      tr {
+        &:hover {
+          background-color: #fff;
+        }
+      }
+    }
+    margin: 10px 0;
+    font-size: 14px;
+    width: 100%;
+    thead {
+      width: 100%;
+      background: linear-gradient(to bottom, #fcfcfc 0%, #bebebe 100%);
+    }
+    td, th {
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #b0b1b1;
+    }
+  }
+}
+
+.geocode-dialog {
+  p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder;
+    margin-bottom: 5px;
+    margin-top: -10px;
+  }
+  .controls {
+    width: 85%;
+    @media screen and (max-width: 1068px) {
+      width: 100%;
+    }
+  }
+  .btn-control {
+    width: 14.5%;
+    display: inline-block;
+    text-align: right;
+    @media screen and (max-width: 1068px) {
+      width: 100%;
+      text-align: center;
+      margin: 5px 0;
+      button {
+        width: 49% !important;
+      }
+    }
+  }
+  button {
+    margin-right: 0 !important;
+    width: 48% !important;
+  }
+}
+
+.StartStop,.EndStop {
+  display:inline-block;
+  width:20px;
+  height:20px;
+  padding:2px;
+  border:solid 1px #999;
+  border-radius:40px;
+  text-align:center;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.StartStop span,.EndStop span {
+  display:block;
+  margin:0px;
+  border:solid 1px #999;
+  border-radius:36px;
+  width:18px;
+  height: 18px;
+}
+
+.RailWay {
+  display: inline-block;
+  background: url(../../app/images/railWay.png) repeat-x left center;
+  height: 24px;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.TimeLineStop {
+  display:inline-block;
+  //width:100%;
+  background:#fff;
+  height: 20px;
+  border: solid 2px #ccc;
+  border-radius:3px;
+  box-sizing:border-box;
+  vertical-align: middle;
+  font-size: 12px;
+}
+.TimelineParentDiv div{
+  white-space: nowrap;
+}
+
+.TimelineParentDiv {
+  font-size: 0;
+}
+.ngdialog-move-stop .ngdialog-content{
+  width: 40% !important;
+  min-width:500px !important;
+}
+.ngdialog-move-stop{
+  padding-top:30px !important;
+  padding-bottom:0px !important;
+}
+.btn-check{
+  margin-top:5px;
+  margin-right:5px;
+}
